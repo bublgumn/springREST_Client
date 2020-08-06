@@ -1,0 +1,174 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<form method="POST" action="/admin/editUser"
+      class="form-signin col-6 mx-auto" th:fragment="formsForAdminEdit"
+      id="formForEditUserNow">
+    <p class="form-signin-heading text-center mb-1"><b>ID</b>
+    </p>
+    <p class="mb-2 editinputid">
+        <label for="idEdit" class="sr-only">ID</label>
+        <input type="number" id="idEdit" name="id"
+               class="form-control" readonly="">
+    </p>
+    <p class="form-signin-heading text-center mb-1"><b>First
+        name</b></p>
+    <p class="mb-2 editinputfirstname">
+        <label for="firstNameEdit" class="sr-only">First
+            name</label>
+        <input type="text" id="firstNameEdit" name="firstname"
+               class="form-control">
+    </p>
+    <p class=" form-signin-heading text-center mb-1"><b>Last
+        name</b></p>
+    <p class="mb-2 editinputlastname">
+        <label for="lastNameEdit" class="sr-only">Last
+            name</label>
+        <input type="text" id="lastNameEdit" name="lastname"
+               class="form-control">
+    </p>
+    <p class=" form-signin-heading text-center mb-1"><b>Age</b>
+    </p>
+    <p class="mb-2 editinputage">
+        <label for="ageEdit" class="sr-only">Age</label>
+        <input type="number" id="ageEdit" name="age"
+               class="form-control">
+    </p>
+    <p class=" form-signin-heading text-center mb-1"><b>Email</b></p>
+    <p class="mb-2 editinputemail">
+        <label for="emailEdit" class="sr-only">Email</label>
+        <input type="text" id="emailEdit" name="email"
+               class="form-control">
+    </p>
+    <p class=" form-signin-heading text-center mb-1"><b>Password</b></p>
+    <p class="mb-2">
+        <label for="passwordEdit"
+               class="sr-only">Password</label>
+        <input type="password" id="passwordEdit" name="password"
+               class="form-control"
+               placeholder="Password">
+    </p>
+    <p class="form-signin-heading text-center mb-1"><b>Role</b>
+    </p>
+    <p>
+        <label for="roleEdit" class="sr-only">Role</label>
+        <select class="custom-select mb-2" size="2" name="role"
+                id="roleEdit">
+            <option value="1">ADMIN</option>
+            <option value="2">USER</option>
+        </select>
+    </p>
+    <p class="text-right">
+        <button class="btn btn-secondary" data-dismiss="modal">
+            Close
+        </button>
+        <button class="btn btn-primary " type="submit">Edit
+        </button>
+    </p>
+</form>
+
+
+<form method="POST" action="/admin/deleteUser"
+      class="form-signin col-6 mx-auto" th:fragment="formsForAdminDelete"
+      id="formForDeleteUser">
+    <p class="form-signin-heading text-center mb-1"><b>ID</b>
+    </p>
+    <p class="mb-2 deleteinputid">
+        <label for="idDelete" class="sr-only">ID</label>
+        <input type="text" id="idDelete" name="id"
+               class="form-control" readonly="">
+    </p>
+    <p class="form-signin-heading text-center mb-1"><b>First
+        name</b></p>
+    <p class="mb-2 deleteinputfirstname">
+        <label for="firstNameDelete" class="sr-only">First
+            name</label>
+        <input type="text" id="firstNameDelete" name="firstname"
+               class="form-control" readonly="">
+    </p>
+    <p class="form-signin-heading text-center mb-1"><b>Last
+        name</b></p>
+    <p class="mb-2 deleteinputlastname">
+        <label for="lastNameDelete" class="sr-only">Last
+            name</label>
+        <input type="text" id="lastNameDelete" name="lastname"
+               class="form-control" readonly="">
+    </p>
+    <p class="form-signin-heading text-center mb-1"><b>Age</b>
+    </p>
+    <p class="mb-2 deleteinputage">
+        <label for="ageDelete" class="sr-only">Age</label>
+        <input type="number" id="ageDelete" name="age"
+               class="form-control" readonly="">
+    </p>
+    <p class="form-signin-heading text-center mb-1"><b>Email</b>
+    </p>
+    <p class="mb-2 deleteinputemail">
+        <label for="emailDelete" class="sr-only">Email</label>
+        <input type="text" id="emailDelete" name="email"
+               class="form-control" readonly="">
+    </p>
+    <p class="form-signin-heading text-center mb-1"><b>Role</b>
+    </p>
+    <p class="deleteinputrole">
+        <label for="roleDelete" class="sr-only">Role</label>
+        <select class="custom-select mb-2" size="2" name="role"
+                id="roleDelete" disabled>
+            <option class="role0"></option>
+            <option class="role1"></option>
+        </select>
+    </p>
+    <p class="text-right">
+        <button class="btn btn-secondary" data-dismiss="modal">
+            Close
+        </button>
+        <button class="btn btn-danger " type="submit">Delete
+        </button>
+    </p>
+</form>
+
+
+<form method="POST" action="/admin/addNewUser" class="form-signin col-3 mx-auto"
+      id="formAddNewUser"
+      th:fragment="formsForAdminAddUser">
+    <p class="form-signin-heading text-center mb-1"><b>First name</b></p>
+    <p class="mb-2">
+        <label for="firstName" class="sr-only">First name</label>
+        <input type="text" id="firstName" name="firstname" class="form-control"
+               placeholder="First name" required autofocus>
+    </p>
+    <p class="form-signin-heading text-center mb-1"><b>Last name</b></p>
+    <p class="mb-2">
+        <label for="lastName" class="sr-only">Last name</label>
+        <input type="text" id="lastName" name="lastname" class="form-control"
+               placeholder="Last name" required>
+    </p>
+    <p class="form-signin-heading text-center mb-1"><b>Age</b></p>
+    <p class="mb-2">
+        <label for="age" class="sr-only">Age</label>
+        <input type="number" id="age" name="age" class="form-control"
+               placeholder="Age" required>
+    </p>
+    <p class="form-signin-heading text-center mb-1"><b>Email</b></p>
+    <p class="mb-2">
+        <label for="email" class="sr-only">Email</label>
+        <input type="text" id="email" name="email" class="form-control"
+               placeholder="Email" required>
+    </p>
+    <p class="form-signin-heading text-center mb-1"><b>Password</b></p>
+    <p class="mb-2">
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" class="form-control"
+               placeholder="Password" required>
+    </p>
+    <p class="form-signin-heading text-center mb-1"><b>Role</b></p>
+    <p>
+        <label for="role" class="sr-only">Role</label>
+        <select class="custom-select mb-2" size="2" name="role" id="role">
+            <option value="1">ADMIN</option>
+            <option value="2" selected>USER</option>
+        </select>
+    </p>
+    <p class="text-center">
+        <button class="btn btn-success mt-2" type="submit"><h4>Add new user</h4></button>
+    </p>
+</form>

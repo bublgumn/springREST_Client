@@ -1,0 +1,183 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div class="row" th:fragment="contentAdmin">
+    <ul class="nav flex-column nav-pills col-2">
+        <li class="nav-item">
+            <a href="#Admin" class="nav-link active" data-toggle="tab">Admin</a>
+        </li>
+        <li class="nav-item">
+            <a href="#User" class="nav-link" data-toggle="tab">User</a>
+        </li>
+    </ul>
+    <div class="tab-content col-10">
+        <!--Навигация админа-->
+        <div id="Admin" class="tab-pane active">
+            <h1>Admin panel</h1>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#AdminTable" data-toggle="tab">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#AdminNewUser" data-toggle="tab">New User</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <!--Навигация контента админа-->
+                <div id="AdminTable" class="tab-pane active border rounded">
+                    <h4 class="border-bottom p-2 pl-3 mb-3" style="background-color: #f7f7f7;">All users</h4>
+                    <div class="container-fluid">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th><b>ID</b></th>
+                                <th><b>First Name</b></th>
+                                <th><b>Last Name</b></th>
+                                <th><b>Age</b></th>
+                                <th><b>Email</b></th>
+                                <th><b>Role</b></th>
+                                <th><b>Edit</b></th>
+                                <th><b>Delete</b></th>
+                            </tr>
+                            </thead>
+                            <tbody id="allUsers">
+                            <div th:each="user : ${users}">
+                                <tr th:id="${user.getId()}">
+                                    <td th:text="${user.getId()}"></td>
+                                    <td th:text="${user.getFirstname()}"></td>
+                                    <td th:text="${user.getLastname()}"></td>
+                                    <td th:text="${user.getAge()}"></td>
+                                    <td th:text="${user.getEmail()}"></td>
+                                    <td th:text="${user.printRoles()}"></td>
+                                    <!--кнопка для изменения юзера-->
+                                    <td>
+                                        <button class="btn btn-info" data-toggle="modal" data-target="#myModalEdit"
+                                                th:attr="data-editid=${user.getId()},data-editfirstname=${user.getFirstname()},data-editlastname=${user.getLastname()},data-editage=${user.getAge()},data-editemail=${user.getEmail()}"
+                                                >Edit
+                                        </button>
+                                        <div id="myModalEdit" class="modal fade" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4>Edit user</h4>
+                                                        <button class="close" data-dismiss="modal">x</button>
+                                                    </div>
+                                                    <div class="container-fluid"
+                                                         th:insert="fragments/forms :: formsForAdminEdit">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!--кнопка для удаления юзера-->
+                                    <td>
+                                        <button class="btn btn-danger" data-toggle="modal" data-target="#myModalDelete"
+                                                th:attr="data-deleteid=${user.getId()},data-deletefirstname=${user.getFirstname()},data-deletelastname=${user.getLastname()},data-deleteage=${user.getAge()},data-deleteemail=${user.getEmail()},data-deleterole=${user.getRole().size()}"
+                                                >Delete
+                                        </button>
+                                        <div id="myModalDelete" class="modal fade" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4>Delete user</h4>
+                                                        <button class="close" data-dismiss="modal">x</button>
+                                                    </div>
+                                                    <div class="container-fluid"
+                                                         th:insert="fragments/forms :: formsForAdminDelete">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </div>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+                <!--контент админа для создания юзера-->
+                <div id="AdminNewUser" class="tab-pane border rounded">
+                    <h4 class="border-bottom p-2 pl-3 mb-3" style="background-color: #f7f7f7;">Add new user</h4>
+                    <div class="container-fluid" th:insert="fragments/forms :: formsForAdminAddUser">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="User" class="tab-pane">
+            <h1>User information-page</h1>
+            <!--Контент юзера-->
+            <div class="tab-pane border rounded">
+                <h4 class="border-bottom p-2 pl-3 mb-3" style="background-color: #f7f7f7;">About user</h4>
+                <div class="container-fluid">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th><b>ID</b></th>
+                            <th><b>First Name</b></th>
+                            <th><b>Last Name</b></th>
+                            <th><b>Age</b></th>
+                            <th><b>Email</b></th>
+                            <th><b>Role</b></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${mainUser.getId()}"></td>
+                            <td th:text="${mainUser.getFirstname()}"></td>
+                            <td th:text="${mainUser.getLastname()}"></td>
+                            <td th:text="${mainUser.getAge()}"></td>
+                            <td th:text="${mainUser.getEmail()}"></td>
+                            <td th:text="${mainUser.printRoles()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" th:fragment="contentUser">
+    <ul class="nav flex-column nav-pills col-2">
+        <li class="nav-item">
+            <a href="#User" class="nav-link active" data-toggle="tab">User</a>
+        </li>
+    </ul>
+    <div class="tab-content col-10">
+        <div id="User" class="tab-pane active">
+            <h1>User information-page</h1>
+            <!--Контент юзера-->
+            <div class="tab-pane active border rounded">
+                <h4 class="border-bottom p-2 pl-3 mb-3" style="background-color: #f7f7f7;">About user</h4>
+                <div class="container-fluid">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th><b>ID</b></th>
+                            <th><b>First Name</b></th>
+                            <th><b>Last Name</b></th>
+                            <th><b>Age</b></th>
+                            <th><b>Email</b></th>
+                            <th><b>Role</b></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${mainUser.getId()}"></td>
+                            <td th:text="${mainUser.getFirstname()}"></td>
+                            <td th:text="${mainUser.getLastname()}"></td>
+                            <td th:text="${mainUser.getAge()}"></td>
+                            <td th:text="${mainUser.getEmail()}"></td>
+                            <td th:text="${mainUser.printRoles()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
