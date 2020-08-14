@@ -1,13 +1,13 @@
 package org.client.springClient.model;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+/*import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;*/
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class User implements UserDetails {
+public class User {
 
     private Long id;
 
@@ -121,11 +121,6 @@ public class User implements UserDetails {
         this.lastname = lastname;
     }
 
-    @Override
-    public String getUsername() {
-        return getEmail();
-    }
-
     public String getPassword() {
         return password;
     }
@@ -145,27 +140,18 @@ public class User implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRole();
+    public String toString() {
+        String result = "{id: " + id + "} " + System.lineSeparator() +
+                "{firstname: " + firstname + "}" + System.lineSeparator() +
+                "{lastname: " + lastname + "}" + System.lineSeparator() +
+                "{age: " + age + "}" + System.lineSeparator() +
+                "{email: " + email + "}" + System.lineSeparator() +
+                "{password: " + password + "}" + System.lineSeparator();
+        for (Role value : this.role
+        ) {
+            result = result + "{role: " + value.getName() + "}" + System.lineSeparator();
+        }
+        return result;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }

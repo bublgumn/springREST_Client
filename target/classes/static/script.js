@@ -53,7 +53,7 @@ $(function () {
         $.ajax(
             {
                 contentType: 'application/json',
-                url: '/admin/addNewUser/' + role,
+                url: `/admin/addNewUser/${role}`,
                 type: 'POST',
                 data: JSON.stringify(user),
                 success: function (userNew) {
@@ -104,7 +104,7 @@ $(function () {
         });
         $.ajax(
             {
-                url: `/admin/delete/` + idUser,
+                url: `/admin/delete/${idUser}`,
                 type: 'DELETE',
                 success: function () {
                     $(`#` + idUser).remove();
@@ -133,7 +133,7 @@ $(function () {
         $.ajax(
             {
                 contentType: 'application/json',
-                url: `admin/editUser/` + role,
+                url: `admin/editUser/${role}`,
                 type: 'PUT',
                 data: JSON.stringify(user),
                 success: function () {
@@ -144,7 +144,7 @@ $(function () {
                         <td>${user.lastname}</td>'
                         <td>${user.age}</td>
                         <td>${user.email}</td>
-                        <td>${role == "1" ? "admin" + " " + "user" : "user"}</td>
+                        <td>${role == "1" ? "admin user" : "user"}</td>
                         <td>
                             <button class="btn btn-info" data-toggle="modal" data-target="#myModalEdit" 
                             data-editid=${user.id} data-editfirstname=${user.firstname} 

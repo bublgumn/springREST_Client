@@ -1,12 +1,12 @@
 package org.client.springClient.model;
 
-import org.springframework.security.core.GrantedAuthority;
+/*import org.springframework.security.core.GrantedAuthority;*/
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Role implements GrantedAuthority {
+public class Role {
 
     private Long id;
 
@@ -48,11 +48,6 @@ public class Role implements GrantedAuthority {
 
     public void setClient(List<User> client) {
         this.client = client;
-    }
-
-    @Override
-    public String getAuthority() {
-        return getName();
     }
 
     public String printRole() {
