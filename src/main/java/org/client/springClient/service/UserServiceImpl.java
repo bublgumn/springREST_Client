@@ -73,9 +73,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteById(Long id) {
-        restTemplate.delete(
+        restTemplate.exchange(
                 mainURL + "/admin/delete/" + id,
-                new HttpEntity<>("", RestTemplateImpl.getHttpHeaders(jwtTokenDto)));
+                HttpMethod.DELETE,
+                new HttpEntity<>("", RestTemplateImpl.getHttpHeaders(jwtTokenDto)),
+                new ParameterizedTypeReference<String>() {
+                });
     }
 
     @Override
